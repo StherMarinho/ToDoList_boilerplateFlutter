@@ -1,0 +1,9 @@
+Registros dos dados do Tácito:
+- Cara: Salr os SnapShots do Neo4j e MongoDB e recuperá-los no futuro a partir de tratametno de dados
+- Barata porém limitada: usar os dados já presentes no neo4j e mongodb, com daos de auditoria, mas limitados aos dados presentes no banco de dados, sem contar com a dinamicidade da natureza do problema (alguns nós foram apagadas)
+- Cenário ótimo: Quais perguntas queremos responder hoje ou temos expectativa de responder no futuro? Estruturar o salvamento dos dados a partir dessas perguntas.
+
+
+
+
+

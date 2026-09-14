@@ -1,0 +1,27 @@
+analyzer:
+  exclude:
+    - build/**
+    - android/**
+    - ios/**
+    - web/**
+    - windows/**
+    - macos/**
+    - linux/**
+include: package:flutter_lints/flutter.yaml
+linter:
+  rules:
+    # --- Segurança e Performance ---
+    - prefer_const_constructors
+    - prefer_const_literals_to_create_immutables
+    - prefer_const_declarations
+    - cancel_subscriptions
+    - always_declare_return_types
+    - prefer_final_locals
+    - prefer_final_fields
+
+    # --- Estilo e Limpeza ---
+    - avoid_print
+    - sized_box_for_whitespace
+    - prefer_single_quotes  # Força o uso de aspas simples '' (padrão Dart)
+    - avoid_unnecessary_containers
+    - annotate_overrides    # Obriga o uso do @override
