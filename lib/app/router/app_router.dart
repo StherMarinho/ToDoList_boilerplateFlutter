@@ -9,6 +9,9 @@ import 'package:synergia_flutter_meteor_boilerplate/modules/example/domain/examp
 import 'package:synergia_flutter_meteor_boilerplate/modules/example/presentation/example_detail_page.dart';
 import 'package:synergia_flutter_meteor_boilerplate/modules/example/presentation/example_list_page.dart';
 
+import 'package:synergia_flutter_meteor_boilerplate/modules/to_dos/presentation/to_do_detail_page.dart';
+import 'package:synergia_flutter_meteor_boilerplate/modules/to_dos/presentation/to_dos_list_page.dart';
+
 final appRouterProvider = Provider<GoRouter>((ref) {
   final refresh = _RouterRefreshNotifier();
   ref.listen<AuthState>(authControllerProvider, (_, _) => refresh.notify());
@@ -44,6 +47,35 @@ final appRouterProvider = Provider<GoRouter>((ref) {
                 path: 'edit',
                 builder: (_, state) => ExampleDetailPage(
                   exampleId: state.pathParameters['id'],
+                  editing: true,
+                ),
+              ),
+            ],
+          ),
+        ],
+      ),
+      GoRoute(
+        path: '/to-dos',
+        builder: (_, _) => const ToDosListPage(),
+        routes: [
+          GoRoute(
+            path: 'new',
+            builder: (_, _) => const ToDoDetailPage(
+              todoId: null,
+              editing: true,
+            ),
+          ),
+          GoRoute(
+            path: ':id',
+            builder: (_, state) => ToDoDetailPage(
+              todoId: state.pathParameters['id'],
+              editing: false,
+            ),
+            routes: [
+              GoRoute(
+                path: 'edit',
+                builder: (_, state) => ToDoDetailPage(
+                  todoId: state.pathParameters['id'],
                   editing: true,
                 ),
               ),

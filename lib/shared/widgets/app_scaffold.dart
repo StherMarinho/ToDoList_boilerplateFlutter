@@ -23,6 +23,13 @@ class AppScaffold extends ConsumerWidget {
   Widget build(BuildContext context, WidgetRef ref) {
     final user = ref.watch(currentUserProfileProvider);
     final connected = ref.watch(meteorConnectedProvider);
+    final location = GoRouterState.of(context).matchedLocation;
+
+    final selectedIndex = switch (true) {
+      _ when location.startsWith('/to-dos') => 1,
+      _ => 0,
+    };
+
     return Scaffold(
       appBar: AppBar(
         title: Text(title),
@@ -42,10 +49,15 @@ class AppScaffold extends ConsumerWidget {
         ],
       ),
       drawer: NavigationDrawer(
-        selectedIndex: 0,
+        selectedIndex: selectedIndex,
         onDestinationSelected: (index) {
           Navigator.pop(context);
-          if (index == 0) context.go('/examples');
+          switch (index) {
+            case 0:
+              context.go('/examples');
+            case 1:
+              context.go('/to-dos');
+          }
         },
         children: [
           Padding(
@@ -75,6 +87,11 @@ class AppScaffold extends ConsumerWidget {
             icon: Icon(Icons.view_list_outlined),
             selectedIcon: Icon(Icons.view_list),
             label: Text('Exemplos'),
+          ),
+          const NavigationDrawerDestination(
+            icon: Icon(Icons.check_box_outlined),
+            selectedIcon: Icon(Icons.check_box),
+            label: Text('Tarefas'),
           ),
           const Divider(),
           ListTile(
